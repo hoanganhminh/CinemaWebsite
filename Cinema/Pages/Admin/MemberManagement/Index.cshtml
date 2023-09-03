@@ -1,0 +1,106 @@
+﻿@page
+@model Cinema.Pages.Admin.MemberManagement.IndexModel
+
+@{
+    ViewData["Title"] = "Quản lý thành viên";
+}
+<style>
+    th, td {
+        padding: 10px;
+        padding-right: 50px;
+    }
+
+    table {
+        margin: 0 auto;
+    }
+
+    h1 {
+        width: fit-content;
+        margin: 0 auto;
+        margin-bottom: 30px;
+    }
+
+    p a {
+        width: fit-content;
+        margin-left: 50px;
+    }
+</style>
+<div class="container">
+    <div class="page">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="breadcrumbs">
+                    <a asp-page="/index">Trang chủ</a>
+                    <span>Quản lý thành viên</span>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <a href="https://localhost:44320/Admin/RateManagement/Index">Quản lý đánh giá</a> -
+                <a href="https://localhost:44320/Admin/MovieManagement/Index">Quản lý phim</a> -
+                <a href="https://localhost:44320/Admin/MemberManagement/Index">Quản lý thành viên</a> -
+                <a href="https://localhost:44320/Admin/GenreManagement/Index">Quản lý thể loại</a>
+            </div>
+        </div>
+        <div style="padding: 15px 20px; border:2px solid black; border-radius:4%;">
+            <h1>Quản lý thành viên</h1>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Họ và tên 
+                        </th>
+                        <th>
+                            Giới tính 
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Loại
+                        </th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Member)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Fullname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Gender)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @if (item.Type == 0 || item.Type == 3 || item.Type == 4)
+                                {
+                                    <p>
+                                        Member
+                                    </p>
+                                }
+                                @if (item.Type == 1)
+                                {
+                                    <p>Quản trị viên</p>
+                                }
+                                @if (item.Type == 2)
+                                {
+                                    <p>
+                                        BLOCK
+                                    </p>
+                                }
+                            </td>
+                            <td>
+                                <a asp-page="./Edit" asp-route-id="@item.MemberId">Sửa</a> |
+                                <a asp-page="./Details" asp-route-id="@item.MemberId">Thông tin</a> 
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>

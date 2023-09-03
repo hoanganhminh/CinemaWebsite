@@ -1,0 +1,105 @@
+﻿@page
+@model Cinema.Pages.Admin.MovieManagement.IndexModel
+
+@{
+    ViewData["Title"] = "Quản lý phim";
+}
+<style>
+    th, td {
+        padding: 10px;
+        padding-right: 50px;
+    }
+
+    table {
+        margin: 0 auto;
+    }
+
+    h1 {
+        width: fit-content;
+        margin: 0 auto;
+        margin-bottom: 30px;
+    }
+
+    p a {
+        width: fit-content;
+        margin-left: 50px;
+    }
+</style>
+<div class="container">
+    <div class="page">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="breadcrumbs">
+                    <a asp-page="/index">Trang chủ</a>
+                    <span>Quản lý phim</span>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <a href="https://localhost:44320/Admin/RateManagement/Index">Quản lý đánh giá</a> -
+                <a href="https://localhost:44320/Admin/MovieManagement/Index">Quản lý phim</a> -
+                <a href="https://localhost:44320/Admin/MemberManagement/Index">Quản lý thành viên</a> -
+                <a href="https://localhost:44320/Admin/GenreManagement/Index">Quản lý thể loại</a>
+            </div>
+        </div>
+        <div style="padding: 15px 20px; border:2px solid black; border-radius:4%;">
+            <h1>Quản lý phim</h1>
+            <div class="row">
+                <div class="col-md-8">
+                    <p>
+                        <a asp-page="Create">Tạo Mới</a>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <form method="get" class="">
+                        <input name="search" type="text" placeholder="Tìm phim" />
+                        <button type="submit" class="btn">Tìm kiếm</button>
+                    </form>
+                </div>
+            </div>
+            
+            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Đề mục 
+                        </th>
+                        <th>
+                            Ngày chiếu 
+                        </th>
+                        <th>
+                            Id Thể loại 
+                        </th>
+                        <th>
+                           Poster
+                        </th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Movie)
+                    {
+                        <tr>
+                            <td style="width:300px">
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Year)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GenreId)
+                            </td>
+                            <td>
+                                <img style="height:200px" src="@Html.DisplayFor(modelItem => item.Image)" x alt="#">
+                            </td>
+                            <td>
+                                <a asp-page="./Edit" asp-route-id="@item.MovieId">Sửa</a> |
+                                <a asp-page="./Details" asp-route-id="@item.MovieId">Thông tin</a> 
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>

@@ -1,0 +1,90 @@
+﻿@page
+@model Cinema.Pages.Admin.MovieManagement.EditModel
+
+@{
+    ViewData["Title"] = "Quản lý phim";
+}
+<style>
+    th, td {
+        padding: 10px;
+        padding-right: 50px;
+    }
+
+    table {
+        margin: 0 auto;
+    }
+
+    h1 {
+        width: fit-content;
+        margin: 0 auto;
+        margin-bottom: 30px;
+    }
+
+    p a {
+        width: fit-content;
+        margin-left: 50px;
+    }
+</style>
+<div class="container">
+    <div class="page">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="breadcrumbs">
+                    <a asp-page="/index">Trang chủ</a>
+                    <span>Quản lý phim</span>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <a href="https://localhost:44320/Admin/RateManagement/Index">Quản lý đánh giá</a> -
+                <a href="https://localhost:44320/Admin/MovieManagement/Index">Quản lý phim</a> -
+                <a href="https://localhost:44320/Admin/MemberManagement/Index">Quản lý thành viên</a> -
+                <a href="https://localhost:44320/Admin/GenreManagement/Index">Quản lý thể loại</a>
+            </div>
+        </div>
+        <div style="padding: 15px 20px; border:2px solid black; border-radius:4%;">
+            <h1>Quản lý phim</h1>
+
+            <h4>Movie</h4>
+            <hr />
+            <div class="row">
+                <div class="col-md-4">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Movie.MovieId" />
+                        <div class="form-group">
+                            <label asp-for="Movie.Title" class="control-label"></label>
+                            <input asp-for="Movie.Title" class="form-control" />
+                            <span asp-validation-for="Movie.Title" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Movie.Year" class="control-label"></label>
+                            <input asp-for="Movie.Year" class="form-control" />
+                            <span asp-validation-for="Movie.Year" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Movie.GenreId" class="control-label"></label>
+                            <input asp-for="Movie.GenreId" class="form-control" />
+                            <span asp-validation-for="Movie.GenreId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Movie.Image" class="control-label"></label>
+                            <input asp-for="Movie.Image" class="form-control" />
+                            <span asp-validation-for="Movie.Image" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Save" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div>
+                <a asp-page="./Index">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

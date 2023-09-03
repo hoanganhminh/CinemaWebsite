@@ -1,0 +1,138 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Trang chủ";
+}
+<div class="container">
+    <div class="page">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="slider">
+                    <ul class="slides">
+                        @foreach (var item in Model.movies)
+                        {
+                            <li style="height: 795px;"><a asp-page="/single" asp-route-id="@item.MovieId"><img src="@item.Image" style="overflow:hidden" alt="Slide 1"></a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-sm-6 col-md-12">
+                        <div class="latest-movie">
+                            <a asp-page="/single" asp-route-id="@Model.movies[14].MovieId"><img style="height:380px" src="@Model.movies[14].Image" alt="Movie 1"></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-12">
+                        <div class="latest-movie">
+                            <a asp-page="/single" asp-route-id="@Model.movies[13].MovieId"><img style="height:380px" src="@Model.movies[13].Image" alt="Movie 2"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- .row -->
+        <div class="row">
+            <div class="col-sm-6 col-md-3">
+                <div class="latest-movie">
+                    <a asp-page="/single" asp-route-id="@Model.movies[12].MovieId"><img style="height:380px" src="@Model.movies[12].Image" alt="Movie 3"></a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="latest-movie">
+                    <a asp-page="/single" asp-route-id="@Model.movies[11].MovieId"><img style="height:380px" src="@Model.movies[11].Image" alt="Movie 3"></a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="latest-movie">
+                    <a asp-page="/single" asp-route-id="@Model.movies[10].MovieId"><img style="height:380px" src="@Model.movies[10].Image" alt="Movie 3"></a>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="latest-movie">
+                    <a asp-page="/single" asp-route-id="@Model.movies[9].MovieId"><img style="height:380px" src="@Model.movies[9].Image" alt="Movie 3"></a>
+                </div>
+            </div>
+        </div> <!-- .row -->
+
+        <div class="row">
+            <div class="col-md-4">
+                <h2 class="section-title">Lịch phim đang chiếu</h2>
+                <p>Các phim đang được chiếu tại các rạp của Minh đẹp trai muốn 10 điểm!</p>
+                <ul class="movie-schedule">
+                    @{ int count1 = 0;
+                        foreach (var item in Model.moviesOnShow)
+                        {   
+                            var year = item.Year?.ToString("dd/MM");
+                            if (count1 >= 4)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                count1++;
+                                <li>
+                                    <div class="row">
+                                        <div class="col-md-3 date">@year</div>
+                                        <div class="col-md-9" style="height: 35px"><h2 class="entry-title"><a asp-page="/single" asp-route-id="@item.MovieId">@item.Title</a></h2></div>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    }
+                </ul> <!-- .movie-schedule -->
+            </div>
+            <div class="col-md-4">
+                <h2 class="section-title">Lịch phim sắp chiếu</h2>
+                <p>Các phim sắp được chiếu tại các rạp của Minh đẹp trai muốn 10 điểm!</p>
+                <ul class="movie-schedule">
+                    @{int count = 0;
+                        foreach (var item in Model.moviesComingSoon)
+                        {
+                            var year = item.Year?.ToString("dd/MM");
+                            if (count >= 4)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                count++;
+                                <li>
+                                    <div class="row">
+                                        <div class="col-md-3 date">@year</div>
+                                        <div class="col-md-9" style="height: 35px"><h2 class="entry-title"><a asp-page="/single" asp-route-id="@item.MovieId">@item.Title</a></h2></div>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    }
+                </ul> <!-- .movie-schedule -->
+            </div>
+            <div class="col-md-4">
+                <h2 class="section-title">Lịch các phim HOT nhất</h2>
+                <p>Các phim cực hot đang được chiếu tại các rạp của Minh đẹp trai muốn 10 điểm!</p>
+                <ul class="movie-schedule">
+                    @{int count2 = 0;
+                        foreach (var item in Model.moviesHot)
+                        {
+                            var year = item.Year?.ToString("dd/MM");
+                            if (count2 >= 4)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                count2++;
+                                <li>
+                                    <div class="row">
+                                        <div class="col-md-3 date">@year</div>
+                                        <div class="col-md-9" style="height: 35px"><h2 class="entry-title"><a asp-page="/single" asp-route-id="@item.MovieId">@item.Title</a></h2></div>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    }
+                </ul> <!-- .movie-schedule -->
+            </div>
+        </div>
+    </div>
+</div> <!-- .container -->

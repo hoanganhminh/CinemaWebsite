@@ -1,0 +1,77 @@
+﻿@page
+@model Cinema.Pages.Admin.GenreManagement.IndexModel
+
+@{
+    ViewData["Title"] = "Quản lý thể loại";
+}
+<style>
+    th, td {
+        padding: 10px;
+        padding-right: 50px;
+    }
+
+    table {
+        margin: 0 auto;
+    }
+
+    h1 {
+        width: fit-content;
+        margin: 0 auto;
+        margin-bottom: 30px;
+    }
+
+    p a {
+        width: fit-content;
+        margin-left: 50px;
+    }
+</style>
+<div class="container">
+    <div class="page">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="breadcrumbs">
+                    <a asp-page="/index">Trang chủ</a>
+                    <span>Quản lý thể loại</span>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <a href="https://localhost:44320/Admin/RateManagement/Index">Quản lý đánh giá</a> -
+                <a href="https://localhost:44320/Admin/MovieManagement/Index">Quản lý phim</a> -
+                <a href="https://localhost:44320/Admin/MemberManagement/Index">Quản lý thành viên</a> -
+                <a href="https://localhost:44320/Admin/GenreManagement/Index">Quản lý thể loại</a>
+            </div>
+        </div>
+        <div style="padding: 15px 20px; border:2px solid black; border-radius:4%;">
+            <h1>Quản lý thể loại</h1>
+
+            <p>
+                <a asp-page="Create">Thêm</a>
+            </p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            Chi tiết 
+                        </th>
+                        <th>Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Genre)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                <a asp-page="./Edit" asp-route-id="@item.GenreId">Sửa</a> |
+                                <a asp-page="./Details" asp-route-id="@item.GenreId">Thông tin</a> |
+                                <a asp-page="./Delete" asp-route-id="@item.GenreId">Xóa</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>

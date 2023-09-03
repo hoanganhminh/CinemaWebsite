@@ -1,0 +1,81 @@
+﻿@page
+@model Cinema.Pages.joinusModel
+@{
+    ViewData["Title"] = "Nâng cấp";
+}
+<div class="container">
+    <div class="page">
+        <div class="breadcrumbs">
+            <a asp-page="/index">Home</a>
+            <span>Nâng cấp</span>
+        </div>
+
+        <div class="content">
+            <h2 class="section-title">THỂ LỆ</h2>
+            <p>
+                Chương trình khách hàng thân thiết là chương trình ưu đãi dựa trên điểm tích lũy của các thành viên gồm Star, G-star, X-star. Với mỗi giao dịch tại hệ thống rạp PRN221, bạn sẽ nhận được điểm thưởng tương ứng. Hình thức tích lũy như sau:
+            </p>
+            <img src="https://www.galaxycine.vn/media/2019/12/18/10-000d1star_1576655356732.jpg" />
+            <h2 class="section-title">
+                Cách làm tròn điểm thưởng:
+            </h2>
+            <p>
+                Từ 0.1 đến 0.4: làm tròn xuống (Ví dụ: 3.2 sao sẽ được tích vào tài khoản 3 sao)
+            </p>
+
+            <p>
+                Từ 0.5 đến 0.9: làm tròn lên (Ví dụ: 3.5 sao sẽ được tích vào tài khoản 4 sao)
+            </p>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="feature">
+                        <h3 class="feature-title">HẠNG THƯỜNG</h3>
+                        <small class="feature-subtitle">Xem phim tại rạp theo lịch</small>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum aut ad optio praesentium amet, ullam vel impedit dignissimos voluptas, consequatur recusandae quo autem consectetur tempore rem quam corrupti a. Accusamus.</p>
+                        <p href="" class="button" style="background-color:dimgray;color:white;width:fit-content">MỞ KHÓA</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature">
+                        <h3 class="feature-title">HẠNG BẠC</h3>
+                        <small class="feature-subtitle">Xem phim tại rạp free popcorn</small>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta aperiam quidem nobis rem exercitationem aut assumenda iure molestias eius accusantium, temporibus quis esse tempora. Laboriosam libero odio nobis, eligendi minus.</p>
+                        @if (Model.member.Type != 3)
+                        {
+                            <a asp-page="/joinus" asp-route-id="3" class="button">MỞ KHÓA</a>
+                        }
+                        else if (Model.member.Type == 3)
+                        {
+                            <p asp-page="/joinus" asp-route-id="0" class="button" style="background-color:dimgray;color:white;width:fit-content">ĐÃ MỞ KHÓA</p>
+                        }
+                        else
+                        {
+                            <p href="" class="button" style="background-color:dimgray;color:white;width:fit-content">MỞ KHÓA</p>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature">
+                        <h3 class="feature-title">HẠNG VÀNG</h3>
+                        <small class="feature-subtitle">Xem phim tại rạp free ghế vip</small>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo commodi impedit ea beatae, in ipsa doloribus consequuntur ut, quod dolor dolore unde, esse eligendi autem nobis rem tempora recusandae laborum.</p>
+                        @if (Model.member.Type != 4)
+                        {
+                            <a asp-page="/joinus" asp-route-id="4" class="button">MỞ KHÓA</a>
+                        }
+                        else if (Model.member.Type == 4)
+                        {
+                            <p asp-page="/joinus" asp-route-id="0" class="button" style="background-color:dimgray;color:white;width:fit-content">ĐÃ MỞ KHÓA</p>
+                        }
+                        else
+                        {
+                            <p href="" class="button" style="background-color:dimgray;color:white;width:fit-content">MỞ KHÓA</p>
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- .container -->

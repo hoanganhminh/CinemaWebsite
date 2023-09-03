@@ -1,0 +1,116 @@
+﻿@page
+@model Cinema.Pages.reviewModel
+@{
+    ViewData["Title"] = "Phim";
+}
+
+<div class="container">
+    <div class="page">
+        <div class="breadcrumbs">
+            <a asp-page="/index">Trang chủ</a>
+            <span>Phim</span>
+        </div>
+
+        <div class="filters">
+            <div class="dropdown">
+                <button style="width:80px" class="dropbtn">Thể loại</button>
+                <div class="dropdown-content">
+                    @foreach (var item in Model.genres)
+                    {
+                        <a asp-page="/review" asp-route-id="@item.GenreId">@item.Description</a>
+                    }
+                </div>
+            </div>
+            <div class="dropdown">
+                <button style="width:80px" class="dropbtn">Phim</button>
+                <div class="dropdown-content">
+                    <a asp-page="/review" asp-route-all="all">Tất cả</a>
+                    <a asp-page="/review" asp-route-onShowing="onShowing">Phim đang chiếu</a>
+                    <a asp-page="/review" asp-route-comingSoon="comingSoon">Phim sắp chiếu</a>
+                    <a asp-page="/review" asp-route-hot="hot">Phim Hot</a>
+                </div>
+            </div>
+        </div>
+        <div class="movie-list">
+            @{
+                foreach (var item in Model.movies)
+                {
+                    foreach (var i in Model.genres)
+                    {
+                        if (item.GenreId == i.GenreId)
+                        {
+                            <div class="movie">
+                                <figure class="movie-poster"><a asp-page="/single" asp-route-id="@item.MovieId"><img style="height:362px" src="@item.Image" x alt="#"></a></figure>
+                                <div class="movie-title"><a asp-page="/single" asp-route-id="@item.MovieId">@item.Title</a></div>
+                                @{ var year = item.Year?.ToString("dd/MM/yyyy");}
+                                <p>@i.Description - @year</p>
+                            </div>
+                        }
+
+                    }
+                }
+            }
+        </div> <!-- .movie-list -->
+
+        @*<div class="pagination">
+            <a href="#" class="page-number prev"><i class="fa fa-angle-left"></i></a>
+            <span class="page-number current">1</span>
+            <a href="#" class="page-number">2</a>
+            <a href="#" class="page-number">3</a>
+            <a href="#" class="page-number">4</a>
+            <a href="#" class="page-number">5</a>
+            <a href="#" class="page-number next"><i class="fa fa-angle-right"></i></a>
+        </div>*@
+    </div>
+</div> <!-- .container -->
+<style>
+    /* Style The Dropdown Button */
+    .dropbtn {
+        background-color: darkslategrey;
+        color: white;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+        /* Links inside the dropdown */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 10px;
+            text-decoration: none;
+            display: block;
+        }
+
+            /* Change color of dropdown links on hover */
+            .dropdown-content a:hover {
+                background-color: #f1f1f1
+            }
+
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    /* Change the background color of the dropdown button when the dropdown content is shown */
+    .dropdown:hover .dropbtn {
+        background-color: darkslategrey;
+    }
+</style>
+

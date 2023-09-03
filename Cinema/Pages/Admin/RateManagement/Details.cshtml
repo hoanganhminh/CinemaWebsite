@@ -1,0 +1,71 @@
+﻿@page
+@model Cinema.Pages.Admin.RateManagement.DetailsModel
+@{
+    ViewData["Title"] = "Quản lý bình luận";
+}
+<style>
+    th, td {
+        padding: 10px;
+        padding-right: 50px;
+    }
+
+    table {
+        margin: 0 auto;
+    }
+
+    h1 {
+        width: fit-content;
+        margin: 0 auto;
+        margin-bottom: 30px;
+    }
+
+    p a {
+        width: fit-content;
+        margin-left: 50px;
+    }
+</style>
+<div class="container">
+    <div class="page">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="breadcrumbs">
+                    <a asp-page="/index">Trang chủ</a>
+                    <span>Quản lý bình luận</span>
+                </div>
+            </div>
+            <div class="col-md-7">
+                <a href="https://localhost:44320/Admin/RateManagement/Index">Quản lý đánh giá</a> -
+                <a href="https://localhost:44320/Admin/MovieManagement/Index">Quản lý phim</a> -
+                <a href="https://localhost:44320/Admin/MemberManagement/Index">Quản lý thành viên</a> -
+                <a href="https://localhost:44320/Admin/GenreManagement/Index">Quản lý thể loại</a>
+            </div>
+        </div>
+        <div style="padding: 15px 20px; border:2px solid black; border-radius:4%;">
+            <h1>Quản lý bình luận</h1>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Rate.Comment)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Rate.Comment)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Rate.Rating)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Rate.Rating)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Rate.Time)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Rate.Time)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <a asp-page="./Index">Back to List</a>
+        </div>
+    </div>
+</div>

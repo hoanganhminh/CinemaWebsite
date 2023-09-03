@@ -1,0 +1,117 @@
+﻿@page
+@model Cinema.Pages.Admin.AdminPageModel
+@{
+    ViewData["Title"] = "Quản lý";
+}
+<style>
+    th, td {
+        padding: 10px;
+        padding-right: 50px;
+    }
+
+    table {
+        margin: 0 auto;
+    }
+
+    h1 {
+        width: fit-content;
+        margin: 0 auto;
+        margin-bottom: 30px;
+    }
+
+    p a {
+        width: fit-content;
+        margin-left: 50px;
+    }
+
+    .placeholders {
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+        .placeholders h4 {
+            margin-bottom: 0;
+        }
+
+    .placeholder {
+        margin-bottom: 20px;
+    }
+
+        .placeholder img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+</style>
+<div class="container">
+    <div class="page">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="breadcrumbs">
+                    <a asp-page="/index">Trang chủ</a>
+                    <span>Quản lý</span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <a href="https://localhost:44320/Admin/RateManagement/Index">Quản lý đánh giá</a> -
+                <a href="https://localhost:44320/Admin/MovieManagement/Index">Quản lý phim</a> -
+                <a href="https://localhost:44320/Admin/MemberManagement/Index">Quản lý thành viên</a> -
+                <a href="https://localhost:44320/Admin/GenreManagement/Index">Quản lý thể loại</a>
+            </div>
+            <div class="col-md-2">
+                <div class="breadcrumbs">
+                    <a role="button" type="button" asp-page="/login" class="btn btn-dark">Đăng xuất</a>
+                </div>
+            </div>
+        </div>
+        <h1 class="page-header">Dashboard</h1>
+
+        <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <img src="https://cdn.pixabay.com/photo/2019/11/22/10/02/rate-4644521_1280.png" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+                <h4>Số lượt vote</h4>
+                <span class="text-muted">@Model.rate</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <img src="https://www.tethys.org/wp-content/uploads/2019/02/icon-members.png" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+                <h4>Số thành viên</h4>
+                <span class="text-muted">@Model.mem</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <img src="https://icon-library.com/images/movie-icon-png/movie-icon-png-2.jpg" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+                <h4>Số lượng phim</h4>
+                <span class="text-muted">@Model.movie</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+                <img src="https://static.thenounproject.com/png/2351449-200.png" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+                <h4>Số lượng thể loại</h4>
+                <span class="text-muted">@Model.genre</span>
+            </div>
+        </div>
+
+        <h2 class="sub-header">Top 10 phim được yêu thích</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Tiêu đề</th>
+                        <th>Lịch chiếu</th>
+                        <th>Ảnh</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.movies)
+                    {
+                        <tr>
+                            <td>@item.MovieId</td>
+                            <td>@item.Title</td>
+                            <td>@item.Year</td>
+                            <td><img src="@item.Image" style="height:150px" /></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
